@@ -6,7 +6,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom'
-import Admin from './components/Admin/LayOut'
+import LayOut from './components/Admin/LayOut'
 import NotFound from './components/NotFound'
 import Orders from './components/Admin/Orders'
 import Products from "./components/Admin/Products";
@@ -14,6 +14,7 @@ import DashBoard from './components/Admin/DashBoard'
 import Customers from "./components/Admin/Customers";
 import Settings from "./components/Admin/Settings";
 import Payments from "./components/Admin/Payment";
+import Home from './components/Home'
 function App() {
 
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="customers" element={<Customers />}></Route>
             <Route path="payments" element={<Payments />}></Route>
           </Route>
+          <Route path="/" element={<Home/>}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>

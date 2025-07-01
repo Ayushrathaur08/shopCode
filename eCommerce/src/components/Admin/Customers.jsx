@@ -7,6 +7,126 @@ const Customers = () => {
       email: "abc@gmail.com",
       mobile: 923457632,
       date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
+    },
+    {
+      customerName: "Ayush",
+      email: "abc@gmail.com",
+      mobile: 923457632,
+      date: "6/28/2025",
+      address: "Noida 51",
     },
   ]);
   return (
@@ -20,7 +140,7 @@ const Customers = () => {
                 <th>Customer's Name</th>
                 <th>Email</th>
                 <th>Mobile</th>
-                <th>Date</th>
+                <th>Address</th>
               </tr>
             </thead>
             <tbody className="mt-[1000px]">
@@ -35,10 +155,24 @@ const Customers = () => {
                         : "red-600",
                   }}
                 >
-                  <td className="capitalize">{item.customerName}</td>
+                  <td className="capitalize px-4 py-2">
+                    <div className="flex justify-center gap-3 items-center">
+                      <img
+                        src="/images/avt2.jpg"
+                        className="h-12 w-12 rounded-full text-center text-lg semibold"
+                      />
+                      <div className="flex flex-col justify-center">
+                        <span className="font-semibold">
+                          {item.customerName}
+                        </span>
+                        <small className="text-zinc-800">{item.date}</small>
+                      </div>
+                    </div>
+                  </td>
                   <td>{item.email}</td>
                   <td>{item.mobile}</td>
-                  <td>{item.date}</td>
+                  {/* <td>{item.date}</td> */}
+                  <td>{item.address}</td>
                 </tr>
               ))}
             </tbody>
