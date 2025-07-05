@@ -1,7 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link,useNavigate } from 'react-router-dom';
 
 const Layout = ({ children }) => {
+  const [open, setOpen] = useState(false)
+  const mobileLink = (href) => {
+    navigate(href)
+    setOpen(false)
+  }
+  const navigate = useNavigate()
     const menus = [
       {
         label: "Home",
@@ -22,10 +28,14 @@ const Layout = ({ children }) => {
     ];
     return (
       <div>
-        <nav className="shadow-lg sticky top-0 left-0 bg-white">
+        <nav className=" shadow-lg sticky top-0 left-0 bg-white">
           <div className=" w-10/12 mx-auto flex items-center justify-between">
             <img src="/images/logo3.png" className="w-[120px]" />
-            <ul className="flex justify-between items-center">
+            {/* for mobile view */}
+            <button className="md:hidden" onClick={() => setOpen(!open)}>
+              <i className="ri-menu-2-line text-3xl"></i>
+            </button>
+            <ul className="hidden md:flex  justify-between items-center">
               {menus.map((item, index) => (
                 <li>
                   <Link
@@ -36,10 +46,11 @@ const Layout = ({ children }) => {
                   </Link>
                 </li>
               ))}
-              <Link className="block mx-2  bg-blue-500 text-md rounded font-semibold text-white text-center hover:bg-rose-600 hover:text-white py-3 px-8">
+              <Link to='/login' className="block mx-2  bg-blue-500 text-md rounded font-semibold text-white text-center hover:bg-rose-600 hover:text-white py-3 px-8"
+              >
                 Login
               </Link>
-              <Link className="block  bg-cyan-500 text-md font-semibold text-white text-center hover:bg-rose-600 hover:text-white py-3 px-10">
+              <Link to='/signup' className="block  bg-cyan-500 text-md font-semibold text-white text-center hover:bg-rose-600 hover:text-white py-3 px-10">
                 SignUp
               </Link>
             </ul>
@@ -49,7 +60,7 @@ const Layout = ({ children }) => {
         <div>{children}</div>
 
         <footer className="bg-orange-600 py-16 mb-0">
-          <div className="w-10/12 mx-auto grid grid-cols-4">
+          <div className="w-10/12 mx-auto grid md:grid-cols-4 md:gap-0 gap-8">
             <div className="space-y-2">
               <h1 className="text-white font-semibold text-2xl">
                 Website Links
@@ -88,7 +99,7 @@ const Layout = ({ children }) => {
                 </li>
               </ul>
             </div>
-            <div className='pr-8'>
+            <div className="pr-8">
               <h1 className="text-white font-semibold text-2xl">Brand Deals</h1>
               <p className="text-gray-100 mb-6">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt,
@@ -128,6 +139,29 @@ const Layout = ({ children }) => {
             </div>
           </div>
         </footer>
+        <aside
+          className="md:hidden overflow-hidden  bg-slate-900 top-0 left-0 w-[250px] fixed h-full shadow-lg"
+          style={{
+            width: open ? "250px" : 0,
+            transition: "0.3s",
+            zIndex: 1,
+          }}
+        >
+          <div
+            className="flex flex-col text-white p-8 gap-8"
+            style={{
+              padding: open ? "2rem" : "0",
+              opacity: open ? 1 : 0,
+              transition: "padding 0.3s ease, opacity 0.3s ease",
+            }}
+          >
+            {menus.map((item, index) => (
+              <button onClick={()=>mobileLink(item.href)} key={index}>
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </aside>
       </div>
     );
 }

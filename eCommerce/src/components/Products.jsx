@@ -1,73 +1,71 @@
-import React, { useState } from 'react'
-import Layout from './Layout'
+import React, { useState } from "react";
+import Layout from "./Layout";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-
-
-const Home = () => {
+const Products = () => {
   const [products, setProducts] = useState([
     {
-      title: "Navy Blue Classic Shirt",
+      title: "Classic Navy Shirt",
       price: 999,
-      discount: 15,
+      discount: 30,
       thumbnail: "/products/a01.jpg",
     },
     {
-      title: "Light Blue Casual Shirt",
-      price: 1099,
-      discount: 10,
+      title: "Slim Fit Casual",
+      price: 1299,
+      discount: 20,
       thumbnail: "/products/a02.jpg",
     },
     {
-      title: "Denim Look Shirt",
-      price: 1299,
-      discount: 20,
+      title: "Sky Blue Formal",
+      price: 1399,
+      discount: 10,
       thumbnail: "/products/a03.jpg",
     },
     {
-      title: "Checked Blue Shirt",
-      price: 1199,
-      discount: 45,
+      title: "Bold Check Shirt",
+      price: 1099,
+      discount: 35,
       thumbnail: "/products/a04.jpg",
     },
     {
-      title: "Striped Office Shirt",
-      price: 1399,
+      title: "Plain Blue Denim",
+      price: 1499,
       discount: 25,
       thumbnail: "/products/a05.jpg",
     },
     {
       title: "Oxford Cotton Shirt",
-      price: 1249,
-      discount: 35,
+      price: 1199,
+      discount: 40,
       thumbnail: "/products/a06.jpg",
     },
     {
-      title: "Sky Blue Formal Shirt",
+      title: "Wrinkle-Free Shirt",
       price: 1149,
       discount: 15,
       thumbnail: "/products/a07.jpg",
     },
     {
-      title: "Premium Linen Shirt",
-      price: 1800,
-      discount: 8,
+      title: "Luxury Linen Shirt",
+      price: 1899,
+      discount: 12,
       thumbnail: "/products/a08.jpg",
     },
     {
-      title: "Weekend Vibe Shirt",
-      price: 1300,
-      discount: 5,
+      title: "Weekend Comfort",
+      price: 1249,
+      discount: 18,
       thumbnail: "/products/a09.jpg",
     },
     {
-      title: "Royal Blue Limited Edition",
-      price: 1500,
+      title: "Limited Edition Blue",
+      price: 1599,
       discount: 50,
       thumbnail: "/products/a10.jpg",
     },
@@ -76,44 +74,14 @@ const Home = () => {
   return (
     <Layout>
       <div>
-        <header>
-          <Swiper
-            style={{ height: "400px", width: "100%" }}
-            modules={[Navigation, Pagination, Scrollbar, A11y]}
-            slidesPerView={1}
-            navigation
-          >
-            <SwiperSlide>
-              <img src="/images/pic1.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/pic2.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/pic3.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/pic4.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/pic5.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/pic6.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/pic7.jpg" />
-            </SwiperSlide>
-          </Swiper>
-        </header>
         <div className="md:p-12 p-8">
-          <h1 className="text-3xl font-bold text-center">Latest Product</h1>
-          <p className="md:w-7/12 mt-2 mb-16 mx-auto text-gray-600">
+          <h1 className="text-3xl font-bold text-center">All Products</h1>
+          <p className="w-7/12 mt-2 mb-16 mx-auto text-gray-600">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi
             fuga unde ab doloremque nesciunt harum itaque perferendis amet alias
             nisi inventore veniam eaque facere quas!
           </p>
-          <div className="w-10/12 mx-auto md:grid grid-cols-4 gap-16 shadow">
+          <div className="md:w-10/12 mx-auto md:grid grid-cols-4 gap-16 shadow">
             {products.map((item, index) => (
               <div key={index} className="bg-white  shadow-lg border-white">
                 <img src={item.thumbnail} />
@@ -141,6 +109,6 @@ const Home = () => {
       </div>
     </Layout>
   );
-}
+};
 
-export default Home
+export default Products;
