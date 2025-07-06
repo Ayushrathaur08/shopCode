@@ -1,7 +1,25 @@
-import React, { useState } from "react";
-import { Link,useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import firebaseApp from "../utils/firebase-config";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+
+const auth = getAuth(firebaseApp);
+
 
 const Layout = ({ children }) => {
+  const [accountMenu,setAccountMenu]=useState(false)
+  const [session, setSession] = useState(null)
+   useEffect(() => {
+     onAuthStateChanged(auth, (user) => {
+       
+       if (user) {
+         setSession(user)
+        
+       } else {
+         setSession(false)
+      }
+    })
+  },[])
   const [open, setOpen] = useState(false)
   const mobileLink = (href) => {
     navigate(href)
@@ -25,7 +43,16 @@ const Layout = ({ children }) => {
         label: "Category",
         href: "/category",
       },
-    ];
+  ];
+  if(session===null)
+    return (
+      <div className="w-full fixed h-full bg-gray-100 top-0 left-0 flex justify-center items-center">
+        <span className="relative flex size-6">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
+          <span className="relative inline-flex size-6 rounded-full bg-sky-500"></span>
+        </span>
+      </div>
+    );
     return (
       <div>
         <nav className=" shadow-lg sticky top-0 left-0 bg-white">
@@ -37,7 +64,7 @@ const Layout = ({ children }) => {
             </button>
             <ul className="hidden md:flex  justify-between items-center">
               {menus.map((item, index) => (
-                <li>
+                <li key={index}>
                   <Link
                     to={item.href}
                     className="block py-8 text-center hover:bg-blue-600 w-[100px] hover:text-white"
@@ -46,13 +73,56 @@ const Layout = ({ children }) => {
                   </Link>
                 </li>
               ))}
-              <Link to='/login' className="block mx-2  bg-blue-500 text-md rounded font-semibold text-white text-center hover:bg-rose-600 hover:text-white py-3 px-8"
-              >
-                Login
-              </Link>
-              <Link to='/signup' className="block  bg-cyan-500 text-md font-semibold text-white text-center hover:bg-rose-600 hover:text-white py-3 px-10">
-                SignUp
-              </Link>
+              {!session && (
+                <>
+                  <Link
+                    to="/login"
+                    className="block mx-2  bg-blue-500 text-md rounded font-semibold text-white text-center hover:bg-rose-600 hover:text-white py-3 px-8"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/signup"
+                    className="block  bg-cyan-500 text-md font-semibold text-white text-center hover:bg-rose-600 hover:text-white py-3 px-10"
+                  >
+                    SignUp
+                  </Link>
+                </>
+              )}
+              {session && (
+                <div
+                  className="relative"
+                  onClick={() => setAccountMenu(!accountMenu)}
+                >
+                  <img
+                    src="/images/avt2.jpg"
+                    className="w-10 h-10 rounded-full cursor-pointer"
+                  />
+                  {accountMenu && 
+                    <div className="flex flex-col items-start animate__animated animate__fadeIn  w-[150px] h-[150px] py-3 bg-white absolute shadow-lg bottom-0 top-12 right-0 ">
+                      <Link
+                        to="/profile"
+                        className="hover:bg-gray-100 w-full text-left p-2"
+                      >
+                        <i className="ri-user-line mr-2"></i> My Profile
+                      </Link>
+
+                      <Link
+                        to="/cart"
+                        className="hover:bg-gray-100 w-full text-left p-2"
+                      >
+                        <i className="ri-shopping-cart-fill mr-2"></i>Cart
+                      </Link>
+                      <button
+                        onClick={()=>signOut(auth)}
+                        className="hover:bg-gray-100 w-full text-left p-2"
+                      >
+                        <i className="ri-logout-circle-r-line mr-2"></i> LogOut
+                      </button>
+                    </div>
+                  }
+                </div>
+              )}
             </ul>
           </div>
         </nav>
@@ -67,16 +137,23 @@ const Layout = ({ children }) => {
               </h1>
               <ul className="space-y-2 text-white">
                 {menus.map((item, index) => (
-                  <div key={index}>
+                  <li key={index}>
                     <Link to={item.href}>{item.label}</Link>
-                  </div>
+                  </li>
                 ))}
-                <li>
-                  <Link to="/login">Login</Link>
-                </li>
-                <li>
-                  <Link to="/signup">SignUp</Link>
-                </li>
+                {!session && (
+                  <>
+                    <li>
+                      <Link to="/login">Login</Link>
+                    </li>
+                    <li>
+                      <Link to="/signup">SignUp</Link>
+                    </li>
+                  </>
+                )}
+                {session && (
+                  <li className="text-black">Hi , {session.email}</li>
+                )}
               </ul>
             </div>
             <div className="space-y-2">
@@ -156,7 +233,7 @@ const Layout = ({ children }) => {
             }}
           >
             {menus.map((item, index) => (
-              <button onClick={()=>mobileLink(item.href)} key={index}>
+              <button onClick={() => mobileLink(item.href)} key={index}>
                 {item.label}
               </button>
             ))}

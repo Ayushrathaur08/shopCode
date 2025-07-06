@@ -76,7 +76,7 @@ const Home = () => {
   return (
     <Layout>
       <div>
-        <header>
+        <header className="-z-10 relative">
           <Swiper
             style={{ height: "400px", width: "100%" }}
             modules={[Navigation, Pagination, Scrollbar, A11y]}

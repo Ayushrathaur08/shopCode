@@ -21,6 +21,8 @@ import Category from "./components/Category";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Contact from "./components/Contact";
+import PreGuard from "./components/Guard/PreGuard";
+import Cart from './components/Cart'
 function App() {
 
   return (
@@ -35,11 +37,15 @@ function App() {
             <Route path="customers" element={<Customers />}></Route>
             <Route path="payments" element={<Payments />}></Route>
           </Route>
+          <Route element={<PreGuard/>}>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/signup" element={<Signup />}></Route>
+          </Route>
+          
           <Route path="/" element={<Home />}></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route path="/category" element={<Category />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
+          <Route path="/cart" element={<Cart/>}></Route>
           <Route path="/contact-us" element={<Contact/>}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
