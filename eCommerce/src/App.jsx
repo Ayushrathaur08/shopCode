@@ -23,6 +23,7 @@ import Signup from "./components/Signup";
 import Contact from "./components/Contact";
 import PreGuard from "./components/Guard/PreGuard";
 import Cart from './components/Cart'
+import Profile from './components/Profile'
 function App() {
 
   return (
@@ -46,7 +47,8 @@ function App() {
           <Route path="/products" element={<Products />}></Route>
           <Route path="/category" element={<Category />}></Route>
           <Route path="/cart" element={<Cart/>}></Route>
-          <Route path="/contact-us" element={<Contact/>}></Route>
+          <Route path="/contact-us" element={<Contact />}></Route>
+          <Route path="/profile" element={<Profile/>}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>
